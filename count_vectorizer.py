@@ -1,3 +1,21 @@
+# Uses python3
+##################################################
+## For detail refer README.md in the main folder
+##################################################
+## GNU General Public License v3.0
+##################################################
+## Author: ANURAG GARG
+## Copyright: Copyright 2020, Count Vecterizer.
+
+## Credits: HSE University
+
+## License: GNU GPL v3.0
+## Version: 1.1.0
+## Mmaintainer: ANURAG GARG
+## Email: mranuraggarg@yahoo.com
+## Status: stable
+####################################################################################################
+
 class CountVectorizer:
     """
     Class CountVectorizer:
@@ -53,28 +71,27 @@ class CountVectorizer:
     '''
 
     def transform(self, corpus):
-        self.fit_sequence = []
-        self.transform_matrix = []
-        self.transform_matrix = []
-        for row in range(len(corpus)):
-            self.transform_matrix.append([0 for _ in range(len(self.fit_dictionary))])
-        len(self.transform_matrix)
+        fit_sequence = []
+        transform_matrix = []
+        for row, _ in enumerate(corpus):
+            transform_matrix.append([0 for _ in range(len(self.fit_dictionary))])
+        len(transform_matrix)
         for word in corpus:
             sequence = [word[i:i + self.ngram] for i in range(len(word) - self.ngram + 1)]
-            self.fit_sequence.append(sequence)
+            fit_sequence.append(sequence)
 
         m = -1
-        for array in self.fit_sequence:
+        for array in fit_sequence:
             m += 1
             n = 0
             a = dict(self.Counter(array))
             for word in self.fit_dictionary.keys():
                 if word not in array:
-                    self.transform_matrix[m][n] = 0
+                    transform_matrix[m][n] = 0
                 else:
-                    self.transform_matrix[m][n] += a[word]
+                    transform_matrix[m][n] += a[word]
                 n += 1
-        return self.transform_matrix
+        return transform_matrix
 
     '''
     Method fit_transform:
